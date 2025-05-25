@@ -46,4 +46,13 @@ async def crear_evento(nombre: str, fecha:str, lugar:str):
     evento = {"nombre":nombre, "fecha": fecha, "lugar": lugar}
     resultado = coleccion.insert_one(evento)
     evento["_id"] = str(resultado.inserted_id)
-    return evento
+    # Vamos a buscar la fecha del sistema 
+    fecha_actual = datetime.now().strftime("%Y-%m-%d")
+    # Filtramos los eventos por la fecha del dia de hoy
+    eventos_filtrados = list(coleccion.find({"fecha": {"$gte": fecha_actual}}).sort("fecha", 1))
+    # Devolvemos los eventos filtrados
+    return eventos_filtrados
+ 
+
+
+f
