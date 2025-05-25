@@ -52,7 +52,3 @@ async def crear_evento(nombre: str, fecha:str, lugar:str):
     eventos_filtrados = list(coleccion.find({"fecha": {"$gte": fecha_actual}}).sort("fecha", 1))
     # Devolvemos los eventos filtrados
     return eventos_filtrados
- 
-
-
-f
